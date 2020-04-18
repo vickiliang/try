@@ -1,26 +1,54 @@
-// create illo
-let illo = new Zdog.Illustration({
-  // set canvas with selector
-  element: '.zdog-canvas',
-});
 
-// add circle
+
+// patty
 new Zdog.Ellipse({
-  addTo: illo,
-  diameter: 80,
-  stroke: 20,
-  color: '#636',
+  addTo: burger,
+  diameter: 96,
+  stroke: 32,
+  color: garnet,
+  fill: true,
 });
 
-// update & render
-illo.updateRenderGraph();
+// bottom bun
+new Zdog.Cylinder({
+  addTo: burger,
+  diameter: topBun.diameter,
+  length: 16,
+  translate: { z: -36 },
+  stroke: topBun.stroke,
+  color: topBun.color,
+});
+
+var seedAnchor = new Zdog.Anchor({
+  addTo: topBun,
+});
+
+var seedZ = ( topBun.diameter + topBun.stroke ) / 2 + 1;
+// seed
+new Zdog.Shape({
+  addTo: seedAnchor,
+  path: [ { y: -3 }, { y: 3 } ],
+  translate: { z: seedZ },
+  stroke: 8,
+  color: gold,
+});
+
+seedAnchor.copyGraph({
+  rotate: { x: 0.6 },
+});
+seedAnchor.copyGraph({
+  rotate: { x: -0.6 },
+});
+seedAnchor.copyGraph({
+  rotate: { y: -0.5 },
+});
+seedAnchor.copyGraph({
+  rotate: { y: 0.5 },
+});
 
 function animate() {
-  // rotate illo each frame
-  illo.rotate.y += 0.03;
   illo.updateRenderGraph();
-  // animate next frame
   requestAnimationFrame( animate );
 }
-// start animation
+
 animate();
