@@ -1,3 +1,7 @@
 h1{
   font-family: savate;
 }
+.zdog-canvas {
+  background: #FDB;
+  cursor: move;
+}
